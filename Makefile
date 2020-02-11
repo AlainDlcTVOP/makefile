@@ -7,6 +7,15 @@ BINARY = hello
 BUILD = build
 #######################
 # Generated variables #
+###########################
+# Configuration variables #
+###########################
+CC = gcc
+LD = gcc
+BINARY = hello
+BUILD = build
+#######################
+# Generated variables #
 #######################
 SRC = $(shell find . -name "*.c")
 OBJ = $(SRC:./%.c=$(BUILD)/%.o)
@@ -15,7 +24,7 @@ TARGET_BINARY = $(BUILD)/$(BINARY)
 # Rules #
 #########
 all: $(TARGET_BINARY)
-check:$(TARGET_BINARY)
+check: $(TARGET_BINARY)
     @#Execute binary and verify output, it returns 0 (success) or 1 (fail)
     [ "$$($(TARGET_BINARY))" = "Hello world!" ]
 clean:
