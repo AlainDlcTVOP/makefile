@@ -1,6 +1,7 @@
 name: C/C++ CI
 
-on: [push]
+
+on: [push, pull_request]
 
 jobs:
   build:
@@ -9,26 +10,34 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
-    
     - name: make
       run: make
     - name: make check
       run: make check
-    
-    - name: Create Release
     - name: Checkout code
       uses: actions/checkout@master
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token     
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
         body: |
-            Changes in this Release
-            - First Change
-            - Second Change
+          Changes in this Release
+          - First Change
+          - Second Change
         draft: false
         prerelease: false
+    - name: Zip Release
+      uses: TheDoctor0/zip-release@v0.2.1
+      with:
+    # Filename for archive
+        filename: # default is release.zip
+    # Base path for archive files
+        path:
+      # optional, default is .
+    # List of excluded files/directories
+        exclusions: # optional, default is
+      # List of excluded files/directories
