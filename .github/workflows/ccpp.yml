@@ -18,7 +18,7 @@ jobs:
   uses: TheDoctor0/zip-release@v0.2.1
         with:
              # Filename for archive
-             filename: ./build # default is release.zip
+             filename: # default is release.zip
                # Base path for archive files
               path: # optional, default is .
                 # List of excluded files/directories
