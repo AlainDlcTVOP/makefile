@@ -9,10 +9,16 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
-    - uses: montudor/action-zip@v0.1.0 
+     
     - name: make
       run: make
     - name: make check
       run: make check
     - name: Create Zip File
+        
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "release.tar.gz,foo/*.txt"
+        bodyFile: "body.md"
+        token: ${{ secrets.GITHUB_TOKEN }}
   
